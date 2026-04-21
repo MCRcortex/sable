@@ -115,14 +115,14 @@ tasks.register('buildRustNatives') {
 }
 
 
+
 tasks.register('packNatives', Tar) {
     group = 'rust'
-    
+    archiveFileName.set("sable_rapier_binaries")
     archiveExtension.set(".tar.xz")
-
-    into nativesDir
+    destinationDirectory.set(nativesDir)
     mustRunAfter(buildRustNatives)
-    
+
     def moves = [
             [src: "target/aarch64-apple-darwin/release/libsable_rapier.dylib", dest: "sable_rapier_aarch64_macos.dylib"],
             [src: "target/x86_64-apple-darwin/release/libsable_rapier.dylib", dest: "sable_rapier_x86_64_macos.dylib"],
@@ -130,7 +130,6 @@ tasks.register('packNatives', Tar) {
             [src: "target/aarch64-unknown-linux-gnu/release/libsable_rapier.so", dest: "sable_rapier_aarch64_linux.so"],
             [src: "target/x86_64-pc-windows-gnu/release/sable_rapier.dll", dest: "sable_rapier_x86_64_windows.dll"]
     ]
-    
     moves.forEach { map ->
         from(file("$rustRootDir/${map.src}")) {
             rename { map.dest }
