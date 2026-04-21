@@ -118,7 +118,7 @@ tasks.register('buildRustNatives') {
 
 tasks.register('packNatives', Tar) {
     group = 'rust'
-    archiveFileName.set("sable_rapier_binaries")
+    archiveFileName.set("sable_rapier_binaries.tar.xz")
     archiveExtension.set(".tar.xz")
     destinationDirectory.set(nativesDir)
     mustRunAfter(buildRustNatives)
