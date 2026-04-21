@@ -4,9 +4,6 @@ import org.tukaani.xz.XZOutputStream
 
 import java.nio.file.Files
 buildscript {
-    repositories {
-        mavenCentral()
-    }
     dependencies {
         classpath 'org.tukaani:xz:1.10'
     }
